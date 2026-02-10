@@ -1,3 +1,12 @@
+// Utility to truncate text to ~150-200 words
+function truncateText(text, maxWords = 150) {
+    const words = text.split(' ');
+    if (words.length > maxWords) {
+        return words.slice(0, maxWords).join(' ') + '...';
+    }
+    return text;
+}
+
 // Load CSV from local files
 async function loadCsvData(filename) {
     const response = await fetch(`assets/data/${filename}.csv`);
@@ -6,7 +15,7 @@ async function loadCsvData(filename) {
     return Papa.parse(csvText, { header: true, skipEmptyLines: true }).data;
 }
 
-// Load Projects
+// Load Projects with Flip Effect
 async function loadProjects() {
     const data = await loadCsvData('projects');
     const container = document.getElementById('project-cards');
@@ -14,15 +23,25 @@ async function loadProjects() {
     container.innerHTML = '';
     data.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'card';
+        card.className = 'project-card';
         card.innerHTML = `
-            <img src="${item['Image URL']}" alt="${item.Title}" style="width:100%; border-radius:5px; margin-bottom:1rem;">
-            <h3>${item.Title}</h3>
-            <p>${item.Description}</p>
-            <p><strong>My Contribution:</strong> ${item['My Contribution']}</p>
-            <div class="badges">${item['Tools Used'].split(',').map(tool => `<span>${tool.trim()}</span>`).join('')}</div>
-            <a href="${item['Google Colab Link']}" class="btn primary" target="_blank">View Code (Colab)</a>
+            <div class="project-card-inner">
+                <div class="project-card-front">
+                    <img src="${item['Image URL']}" alt="${item.Title}">
+                    <h3>${item.Title}</h3>
+                </div>
+                <div class="project-card-back">
+                    <h3>${item.Title}</h3>
+                    <p>${truncateText(item.Description)}</p>
+                    <p><strong>My Contribution:</strong> ${item['My Contribution']}</p>
+                    <div class="tools-badges">${item['Tools Used'].split(',').map(tool => `<span>${tool.trim()}</span>`).join('')}</div>
+                    <a href="${item['Google Colab Link']}" class="btn primary" target="_blank">View Code (Colab)</a>
+                </div>
+            </div>
         `;
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
         container.appendChild(card);
     });
 }
@@ -35,11 +54,11 @@ async function loadResearch() {
     container.innerHTML = '';
     data.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'card';
+        card.className = 'research-card';
         card.innerHTML = `
             <h3>${item.Title}</h3>
             <p>${item.Description}</p>
-            <p><strong>Keywords:</strong> ${item.Keywords}</p>
+            <div class="research-keywords">${item.Keywords.split(',').map(keyword => `<span>${keyword.trim()}</span>`).join('')}</div>
             <p><strong>My Contribution:</strong> ${item['My Contribution']}</p>
             <p><strong>Methodologies:</strong> ${item.Methodologies}</p>
             <p><strong>Tools Used:</strong> ${item['Tools Used']}</p>

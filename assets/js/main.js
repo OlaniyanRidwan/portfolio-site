@@ -13,17 +13,17 @@ async function loadProjects() {
     if (!container) return;
     container.innerHTML = '';
     data.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-          <img src="${item['Image URL']}" alt="${item.Title}" style="width:100%; border-radius:5px; margin-bottom:1rem;">
-          <h3>${item.Title}</h3>
-          <p>${item.Description}</p>
-          <p><strong>My Contribution:</strong> ${item['My Contribution']}</p>
-          <div class="badges">${item['Tools Used'].split(',').map(tool => `<span>${tool.trim()}</span>`).join('')}</div>
-          <a href="${item['Google Colab Link']}" class="btn primary" target="_blank">View Code (Colab)</a>
-      `;
-      container.appendChild(card);
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${item['Image URL']}" alt="${item.Title}" style="width:100%; border-radius:5px; margin-bottom:1rem;">
+            <h3>${item.Title}</h3>
+            <p>${item.Description}</p>
+            <p><strong>My Contribution:</strong> ${item['My Contribution']}</p>
+            <div class="badges">${item['Tools Used'].split(',').map(tool => `<span>${tool.trim()}</span>`).join('')}</div>
+            <a href="${item['Google Colab Link']}" class="btn primary" target="_blank">View Code (Colab)</a>
+        `;
+        container.appendChild(card);
     });
 }
 
@@ -34,17 +34,17 @@ async function loadResearch() {
     if (!container) return;
     container.innerHTML = '';
     data.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-          <h3>${item.Title}</h3>
-          <p>${item.Description}</p>
-          <p><strong>Keywords:</strong> ${item.Keywords}</p>
-          <p><strong>My Contribution:</strong> ${item['My Contribution']}</p>
-          <p><strong>Methodologies:</strong> ${item.Methodologies}</p>
-          <p><strong>Tools Used:</strong> ${item['Tools Used']}</p>
-      `;
-      container.appendChild(card);
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h3>${item.Title}</h3>
+            <p>${item.Description}</p>
+            <p><strong>Keywords:</strong> ${item.Keywords}</p>
+            <p><strong>My Contribution:</strong> ${item['My Contribution']}</p>
+            <p><strong>Methodologies:</strong> ${item.Methodologies}</p>
+            <p><strong>Tools Used:</strong> ${item['Tools Used']}</p>
+        `;
+        container.appendChild(card);
     });
 }
 
@@ -55,15 +55,15 @@ async function loadBlogs() {
     if (!container) return;
     container.innerHTML = '';
     data.slice(0, 3).forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-          <img src="${item['Thumbnail Image URL']}" alt="${item.Title}" style="width:100%; border-radius:5px; margin-bottom:1rem;">
-          <h3>${item.Title}</h3>
-          <p>${item.Excerpt}</p>
-          <a href="${item['Medium Link']}" class="btn primary" target="_blank">Read on Medium</a>
-      `;
-      container.appendChild(card);
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${item['Thumbnail Image URL']}" alt="${item.Title}" style="width:100%; border-radius:5px; margin-bottom:1rem;">
+            <h3>${item.Title}</h3>
+            <p>${item.Excerpt}</p>
+            <a href="${item['Medium Link']}" class="btn primary" target="_blank">Read on Medium</a>
+        `;
+        container.appendChild(card);
     });
 }
 

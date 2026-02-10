@@ -160,7 +160,7 @@ section {
     margin: 0 auto;
 }
 
-.who-i-am, .how-i-think, .capabilities, .tools, .data-literacy, .blog-preview, .social-links, .contact {
+.who-i-am, .how-i-think, .capabilities, .tools, .data-literacy, .blog-preview, .social-links, .contact, .about, .projects, .research {
     text-align: center;
 }
 
@@ -201,11 +201,24 @@ section {
 
 /* Profile Picture */
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     margin: 0 auto 2rem;
     display: block;
+}
+
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bio {
+    flex: 1;
+    text-align: left;
 }
 
 /* Footer */
@@ -241,6 +254,16 @@ footer {
 
     section {
         padding: 2rem 1rem;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
     }
 }
 
